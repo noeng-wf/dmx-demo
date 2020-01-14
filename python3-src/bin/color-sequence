@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+import serial
+from time import sleep
+
+out = serial.Serial('/dev/serial-port-usb', 250000, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_TWO)
+
+def set_color(color):
+	raw_data = bytearray([0] + color)
+	out.break_condition=True
+	sleep(0.0005)
+	out.break_condition=False
+	sleep(0.0005)
+	out.write(raw_data)
+	out.flush()
+
+BLACK = [0, 0, 0, 0]
+RED = [255, 0, 0, 0]
+ORANGE = [255, 128, 0, 0]
+YELLOW = [255, 255, 0, 0]
+GREEN = [0, 255, 0, 0]
+CYAN = [0, 255, 255, 0]
+BLUE = [0, 0, 255, 0]
+UV = [0, 0, 0, 255]
+
+colors = [RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, UV]
+
+set_color(BLACK)
+while True:
+	for color in colors:
+		set_color(color)
+		sleep(0.25)
+		set_color(BLACK)
+		sleep(0.25)
+	sleep(2)
+

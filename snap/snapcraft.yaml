@@ -6,8 +6,8 @@ description: |
   Example script to send some DMX commands for a sequence of color flashes
   to a light via USB RS-485 interface.
 
-grade: devel
-confinement: devmode
+grade: stable
+confinement: strict
 
 parts:
   python3-src:
@@ -18,10 +18,20 @@ parts:
     plugin: cmake
     source: cpp-src
 
+plugs:
+  serial-port-usb:
+    interface: serial-port
+
 apps:
   hello:
     command: bin/hello
   set-color:
     command: bin/set-color
+    plugs: [serial-port-usb]
   hello-cpp:
     command: hello-cpp
+  color-sequence:
+    command: color-sequence
+    daemon: simple
+    restart-condition: always
+    plugs: [serial-port-usb]

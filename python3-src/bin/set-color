@@ -10,7 +10,7 @@ if len(sys.argv) != 5:
 
 color = [int(x) for x in sys.argv[1:]]
 
-out = serial.Serial('/dev/ttyUSB0', 250000, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_TWO)
+out = serial.Serial('/dev/serial-port-usb', 250000, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_TWO)
 
 def set_color(color):
 	raw_data = bytearray([0] + color)
