@@ -10,13 +10,18 @@ grade: devel
 confinement: devmode
 
 parts:
-  hello:
+  python3-src:
     plugin: python
     python-version: python3
     source: python3-src
+  cpp-src:
+    plugin: cmake
+    source: cpp-src
 
 apps:
   hello:
     command: bin/hello
   set-color:
     command: bin/set-color
+  hello-cpp:
+    command: hello-cpp
