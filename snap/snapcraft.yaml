@@ -17,9 +17,6 @@ parts:
   cpp-src:
     plugin: cmake
     source: cpp-src
-  rust-src:
-    plugin: rust
-    source: rust-src
 
 apps:
   hello:
@@ -28,5 +25,3 @@ apps:
     command: bin/set-color
   hello-cpp:
     command: hello-cpp
-  hello-rust:
-    command: hello-rust
