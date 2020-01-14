@@ -16,5 +16,7 @@ parts:
     source: .
 
 apps:
-  noeng-wf-dmx-demo:
+  hello:
     command: bin/hello
+  set-color:
+    command: bin/set-color

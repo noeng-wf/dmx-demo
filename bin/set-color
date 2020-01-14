@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import serial
+import sys
+from time import sleep
+
+if len(sys.argv) != 5:
+	print("Usage: <red> <green> <blue> <uv>")
+	sys.exit(1)
+
+color = [int(x) for x in sys.argv[1:]]
+
+out = serial.Serial('/dev/ttyUSB0', 250000, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_TWO)
+
+def set_color(color):
+	raw_data = bytearray([0] + color)
+	out.break_condition=True
+	sleep(0.0005)
+	out.break_condition=False
+	sleep(0.0005)
+	out.write(raw_data)
+	out.flush()
+
+set_color(color)
+set_color(color)
